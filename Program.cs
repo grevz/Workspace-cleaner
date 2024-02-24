@@ -18,12 +18,7 @@ namespace Workspace_cleaner
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Workspace_cleaner());
         }
-        public static double Prize(int price_car, double bonus)
-        {
 
-            double price_bonus = Convert.ToDouble(price_car) * bonus;
-            return price_bonus;
-        }
     }
 
 
