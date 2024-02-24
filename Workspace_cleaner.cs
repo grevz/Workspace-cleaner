@@ -19,24 +19,21 @@ namespace Workspace_cleaner
             InitializeComponent();
         }
 
-        //TODO: Удаление RMS (для сотрудников)
-        //TODO: Отредактировать приложение (чтобя тянуть не могли)
-        //TODO: Галки по умолчанию
-        //TODO: del %programdata%\Microsoft\Diagnosis\ETLLogs /s /f /q
+        //TODO Класс для процесса
         //TODO Dism.exe /Online /Cleanup-Image /AnalyzeComponentStore
         //TODO Dism.exe /Online /Cleanup-Image /StartComponentCleanup
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (Temporary_files.Checked == true)
+            if (checkBox_temporary_files.Checked == true)
             {
                 Temporary();
             }
-            if (Logs_30days.Checked == true)
+            if (checkBox_logs_30days.Checked == true)
             {
                 Logs_iikoFront();
             }
-            if (Logs_PosServer.Checked == true)
+            if (checkBox_logs_posserver.Checked == true)
 
             {
                 int day_delete = 10;
@@ -60,9 +57,8 @@ namespace Workspace_cleaner
                 
 
             }
-            if (Date_RMS.Checked == true)
+            if (checkBox_date_rms.Checked == true)
             {
-                int day_delete = 10;
                 string path_RMS = "C:\\Users\\User\\AppData\\Roaming\\iiko\\RMS";
 
                 if (Directory.Exists(path_RMS) == true)
@@ -85,7 +81,7 @@ namespace Workspace_cleaner
                 ProcessStartInfo ppt = new ProcessStartInfo
                 {
                     FileName = "cmd.exe",
-                    Arguments = "/c del %temp% /s /f /q",
+                    Arguments = "/c del %temp% /s /f /q & del %programdata%\\Microsoft\\Diagnosis\\ETLLogs /s /f /q",
                     WindowStyle = ProcessWindowStyle.Hidden
                 };
 

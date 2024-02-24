@@ -17,6 +17,8 @@ namespace Workspace_cleaner
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Workspace_cleaner());
+
+            Workspace_cleaner.Logs_iikoFront();
         }
 
     }
