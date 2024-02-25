@@ -13,23 +13,22 @@ namespace Workspace_cleaner
             InitializeComponent();
         }
 
-        //TODO: Проверка мейн попробовать изменить
         private void button1_Click(object sender, EventArgs e)
         {
             //Проверяем какие функции включены
-            if (checkBox_temporary_files.Checked == true) //Проверка на временные файлы
+            if (checkBox_temporary_files.Checked == true) //Нужно удалить временные файлы?
             {
                 string comand_for_del = "/c del % temp % / s / f / q & del % programdata %\\Microsoft\\Diagnosis\\ETLLogs / s / f / q";
                 Change_image(pictureBox1, false);
                 Make_process(pictureBox1, comand_for_del);
             }
-            if (checkBox_logs_30days.Checked == true) //Проверка на логи iikoFront
+            if (checkBox_logs_30days.Checked == true) //Нужно удалить логи iikoFront?
             {
                 string comand_for_del = "/c ForFiles /p \"%userprofile%\\AppData\\Roaming\\iiko\\CashServer\\Logs\" /s /c \"cmd /c del @file /f /q\" /d -30";
                 Change_image(pictureBox2, false);
                 Make_process(pictureBox2, comand_for_del);
             }
-            if (checkBox_logs_posserver.Checked == true) //Проверка на логи POS сервера
+            if (checkBox_logs_posserver.Checked == true) //Нужно удалить логи POS сервера
 
             {
                 Change_image(pictureBox3, false);
@@ -53,8 +52,8 @@ namespace Workspace_cleaner
                     }
                 }
             }
-            // Проверяем наличие папки RMS
-            if (checkBox_date_rms.Checked == true)
+
+            if (checkBox_date_rms.Checked == true) // Нужно удалить папку RMS
             {
                 Change_image(pictureBox4, false);
                 string path_RMS = "C:\\Users\\User\\AppData\\Roaming\\iiko\\RMS";
@@ -68,7 +67,7 @@ namespace Workspace_cleaner
                     MessageBox.Show("Нет данных о RMS на ПК");
                 }
             }
-            if (checkBox_loading.Checked == true) //Проверка на папку загрузки
+            if (checkBox_loading.Checked == true) //Нужно удалить папку загрузки
             {
                 Change_image(pictureBox5, false);
                 string command_for_del = "/c cd %userprofile% & rd /s /q Downloads";
@@ -76,7 +75,7 @@ namespace Workspace_cleaner
             }
 
         }
-        //Изменяем картинку
+        //Изменяем картинку статуса
         public static void Change_image(object img_box, bool ready)
         {
             var img_box_ = img_box as PictureBox;
