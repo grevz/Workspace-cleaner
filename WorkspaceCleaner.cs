@@ -46,6 +46,10 @@ namespace WorkspaceCleaner
                         MessageBox.Show("Нет данных о RMS на ПК");
                     }
                 }
+                    {
+                        MessageBox.Show("Нет данных о RMS на ПК");
+                    }
+                }
             if (checkBox_loading.Checked) //Нужно удалить папку загрузки
             {
                 LoadingFilesDel();
@@ -134,10 +138,6 @@ namespace WorkspaceCleaner
         //Удаления файлов из загрузки
         private void LoadingFilesDel()
         {
-            string DataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-            DeleteFiles(label5, FilesNames(DataPath), "Loading", 1);
-        }
-
         //Определяем путь для POS сервера
         private bool PathForPos(out string folderPath)
         {
@@ -147,7 +147,7 @@ namespace WorkspaceCleaner
                 folderPath = _iikoPosUsersFolder;
                 return true;
         }
-
+            DeleteFiles(label5, FilesNames(DataPath), "Loading", 1);
             if (Directory.Exists(_iikoPosServiceProfileFolder))
         {
                 folderPath = _iikoPosServiceProfileFolder;
@@ -155,6 +155,10 @@ namespace WorkspaceCleaner
             }
 
             MessageBox.Show("Нет POS сервера на компьютере");
+        }
+
+        private bool PathForPos()
+        {
             return false;
         }
 
