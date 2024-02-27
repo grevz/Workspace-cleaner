@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
-namespace Workspace_cleaner
+
+namespace WorkspaceCleaner
 {
     static class Program
     {
@@ -16,7 +15,9 @@ namespace Workspace_cleaner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Workspace_cleaner());
+            Directory.CreateDirectory("..\\Logs");
+            File.Delete("..\\logs\\logs.log");
+            Application.Run(new WorkspaceCleaner());
             
         }
 
