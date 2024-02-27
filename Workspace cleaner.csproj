@@ -49,16 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Workspace_cleaner.cs">
+    <Compile Include="WorkspaceCleaner.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Workspace_cleaner.Designer.cs">
-      <DependentUpon>Workspace_cleaner.cs</DependentUpon>
+    <Compile Include="WorkspaceCleaner.Designer.cs">
+      <DependentUpon>WorkspaceCleaner.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Workspace_cleaner.resx">
-      <DependentUpon>Workspace_cleaner.cs</DependentUpon>
+    <EmbeddedResource Include="WorkspaceCleaner.resx">
+      <DependentUpon>WorkspaceCleaner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
