@@ -16,7 +16,7 @@ namespace WorkspaceCleaner
 
         private const string _iikoPosBase = @"iikoCard5POS\AppData\Roaming\iiko\iikoCard5\Logs";
         private static readonly string _iikoPosServiceProfileFolder = Path.Combine(@"C:\Windows\ServiceProfiles", _iikoPosBase);
-        private static readonly string _iikoPosUsersFolder = Path.Combine(@"C:\Users\iikoCard5POS", _iikoPosBase);
+        private static readonly string _iikoPosUsersFolder = Path.Combine(@"C:\Users\", _iikoPosBase);
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -31,55 +31,24 @@ namespace WorkspaceCleaner
             {
                 LogsFilesDel();
             }
-            if (checkBox_logs_posserver.Checked & true) //Нужно удалить логи POS сервера
-            { 
+            if (checkBox_logs_posserver.Checked & PathForPos(out var path)) //Нужно удалить логи POS сервера
+            {
+               DeleteFiles(label3, FilesNames(path), "iikoPosLogs", -10);
             }
 
 
             if (checkBox_date_rms.Checked) // Нужно удалить папку RMS
-                {
-                    string path_RMS = "C:\\Users\\User\\AppData\\Roaming\\iiko\\RMS";
-                    if (Directory.Exists(path_RMS))
-                    {
-                        string command_for_del = "/c cd C:\\Users\\User\\AppData\\Roaming\\iiko & rd /s /q RMS";
-                        MakeProcess(label4, command_for_del);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Нет данных о RMS на ПК");
-                    }
-                }
+               {
+                    RMSFilesDel();
+               }  
             if (checkBox_loading.Checked) //Нужно удалить папку загрузки
             {
-                string command_for_del = "/c cd %userprofile% & rd /s /q Downloads";
-                MakeProcess(label5, command_for_del);
+                LoadingFilesDel();
             }
 
         }
 
-        private void MakeProcess(object pic_box_num, string arguments)
-        {
-            var pic_box = pic_box_num as Label;
-            ChangeStatus(pic_box, false);
-            try
-            {
-                ProcessStartInfo ppt = new ProcessStartInfo
-                {
-                    FileName = "cmd.exe",
-                    Arguments = arguments,
-                    WindowStyle = ProcessWindowStyle.Hidden
-                };
-                Process procCommand = Process.Start(ppt);
-                procCommand.EnableRaisingEvents = true;
-                procCommand.Exited += (sender, e) =>
-                {
-                    ChangeStatus(pic_box, true);
-                };
-            } //Контроль выполнения процесса
-            catch { }
-
-        }
-        // Меняем статус
+        // Меняем статус работы
         private void ChangeStatus(object label_box, bool ready)
         {
 
@@ -137,9 +106,10 @@ namespace WorkspaceCleaner
             DataPath = $"{DataPath}\\AppData\\Local\\Temp";
             DeleteFiles(label1, FilesNames(DataPath), "TEMP", 1);
         }
+        //Возвращаем список путей для всех файлов и папок 
         private IEnumerable<string> FilesNames(string DataPath)
         {
-            return Directory.EnumerateFileSystemEntries(DataPath); //Возвращаем список путей для всех файлов и папок
+            return Directory.EnumerateFileSystemEntries(DataPath); 
         }
 
         //Удаление файлов из ETLLogs
@@ -156,16 +126,38 @@ namespace WorkspaceCleaner
             DeleteFiles(label2, FilesNames(DataPath), "iikoFrontLogs", -30);
         }
 
-        private void POSFilesDel()
+        //Удаления файлов из загрузки
+        private void LoadingFilesDel()
         {
-
+            string DataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+            DeleteFiles(label5, FilesNames(DataPath), "Loading", 1);
         }
 
-        private bool PathForPos()
+        //Определяем путь для POS сервера
+        private bool PathForPos(out string folderPath)
         {
+            folderPath = "";
+            if (Directory.Exists(_iikoPosUsersFolder))
+            {
+                folderPath = _iikoPosUsersFolder;
+                return true;
+            }
+
+            if (Directory.Exists(_iikoPosServiceProfileFolder))
+            {
+                folderPath = _iikoPosServiceProfileFolder;
+                return true;
+            }
+
+            MessageBox.Show("Нет POS сервера на компьютере");
             return false;
         }
 
-
+        //Удаление данных по RMS
+        private void RMSFilesDel()
+        {
+            string DataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "iiko\\RMS");
+            DeleteFiles(label4, FilesNames(DataPath), "RMS", 1);
+        }
     }
 }
