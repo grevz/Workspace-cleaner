@@ -157,8 +157,13 @@ namespace WorkspaceCleaner
             MessageBox.Show("Нет POS сервера на компьютере");
         }
 
-        private bool PathForPos()
-        {
+            if (Directory.Exists(_iikoPosServiceProfileFolder))
+            {
+                folderPath = _iikoPosServiceProfileFolder;
+                return true;
+            }
+
+            MessageBox.Show("Нет POS сервера на компьютере");
             return false;
         }
 
