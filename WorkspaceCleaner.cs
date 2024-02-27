@@ -32,15 +32,20 @@ namespace WorkspaceCleaner
                 LogsFilesDel();
             }
             if (checkBox_logs_posserver.Checked & PathForPos(out var path)) //Нужно удалить логи POS сервера
-            {
+            { 
                DeleteFiles(label3, FilesNames(path), "iikoPosLogs", -10);
             }
 
 
             if (checkBox_date_rms.Checked) // Нужно удалить папку RMS
-               {
+                {
                     RMSFilesDel();
-               }  
+                    }
+                    else
+                    {
+                        MessageBox.Show("Нет данных о RMS на ПК");
+                    }
+                }
             if (checkBox_loading.Checked) //Нужно удалить папку загрузки
             {
                 LoadingFilesDel();
@@ -141,10 +146,10 @@ namespace WorkspaceCleaner
             {
                 folderPath = _iikoPosUsersFolder;
                 return true;
-            }
+        }
 
             if (Directory.Exists(_iikoPosServiceProfileFolder))
-            {
+        {
                 folderPath = _iikoPosServiceProfileFolder;
                 return true;
             }
