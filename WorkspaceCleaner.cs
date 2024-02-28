@@ -109,7 +109,7 @@ namespace WorkspaceCleaner
         //Возвращаем список путей для всех файлов и папок 
         private IEnumerable<string> FilesNames(string DataPath)
         {
-                return Directory.EnumerateFileSystemEntries(DataPath);
+            return Directory.EnumerateFileSystemEntries(DataPath);
         }
 
         //Удаление файлов из ETLLogs
