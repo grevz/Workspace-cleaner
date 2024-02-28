@@ -32,24 +32,15 @@ namespace WorkspaceCleaner
                 LogsFilesDel();
             }
             if (checkBox_logs_posserver.Checked & PathForPos(out var path)) //Нужно удалить логи POS сервера
-            { 
-               DeleteFiles(label3, FilesNames(path), "iikoPosLogs", -10);
+            {
+                DeleteFiles(label3, FilesNames(path), "iikoPosLogs", -10);
             }
 
 
             if (checkBox_date_rms.Checked) // Нужно удалить папку RMS
-                {
-                    RMSFilesDel();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Нет данных о RMS на ПК");
-                    }
-                }
-                    {
-                        MessageBox.Show("Нет данных о RMS на ПК");
-                    }
-                }
+            {
+                RMSFilesDel();
+            }
             if (checkBox_loading.Checked) //Нужно удалить папку загрузки
             {
                 LoadingFilesDel();
@@ -118,7 +109,7 @@ namespace WorkspaceCleaner
         //Возвращаем список путей для всех файлов и папок 
         private IEnumerable<string> FilesNames(string DataPath)
         {
-            return Directory.EnumerateFileSystemEntries(DataPath); 
+                return Directory.EnumerateFileSystemEntries(DataPath);
         }
 
         //Удаление файлов из ETLLogs
@@ -138,6 +129,10 @@ namespace WorkspaceCleaner
         //Удаления файлов из загрузки
         private void LoadingFilesDel()
         {
+            string DataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+            DeleteFiles(label5, FilesNames(DataPath), "Loading", 1);
+        }
+
         //Определяем путь для POS сервера
         private bool PathForPos(out string folderPath)
         {
@@ -146,16 +141,7 @@ namespace WorkspaceCleaner
             {
                 folderPath = _iikoPosUsersFolder;
                 return true;
-        }
-            DeleteFiles(label5, FilesNames(DataPath), "Loading", 1);
-            if (Directory.Exists(_iikoPosServiceProfileFolder))
-        {
-                folderPath = _iikoPosServiceProfileFolder;
-                return true;
             }
-
-            MessageBox.Show("Нет POS сервера на компьютере");
-        }
 
             if (Directory.Exists(_iikoPosServiceProfileFolder))
             {
