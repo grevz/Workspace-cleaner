@@ -35,11 +35,12 @@ namespace WorkspaceCleaner
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox_date_rms = new System.Windows.Forms.CheckBox();
             this.checkBox_loading = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.CheckTempDelLabel = new System.Windows.Forms.Label();
+            this.CheckIikoFrontDelLabel = new System.Windows.Forms.Label();
+            this.CheckPosDelLabel = new System.Windows.Forms.Label();
+            this.CheckRMSDelLabel = new System.Windows.Forms.Label();
+            this.CheckLoadingDelLabel = new System.Windows.Forms.Label();
+            this.CheckETLLogsDelLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // checkBox_temporary_files
@@ -102,56 +103,71 @@ namespace WorkspaceCleaner
             this.checkBox_loading.Text = "Очистить загрузки";
             this.checkBox_loading.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // CheckTempDelLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(267, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 12;
+            this.CheckTempDelLabel.AutoSize = true;
+            this.CheckTempDelLabel.Location = new System.Drawing.Point(267, 13);
+            this.CheckTempDelLabel.Name = "CheckTempDelLabel";
+            this.CheckTempDelLabel.Size = new System.Drawing.Size(13, 13);
+            this.CheckTempDelLabel.TabIndex = 12;
+            this.CheckTempDelLabel.Text = "  ";
             // 
-            // label2
+            // CheckIikoFrontDelLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(267, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 13);
-            this.label2.TabIndex = 13;
+            this.CheckIikoFrontDelLabel.AutoSize = true;
+            this.CheckIikoFrontDelLabel.Location = new System.Drawing.Point(267, 37);
+            this.CheckIikoFrontDelLabel.Name = "CheckIikoFrontDelLabel";
+            this.CheckIikoFrontDelLabel.Size = new System.Drawing.Size(13, 13);
+            this.CheckIikoFrontDelLabel.TabIndex = 13;
+            this.CheckIikoFrontDelLabel.Text = "  ";
             // 
-            // label3
+            // CheckPosDelLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(267, 62);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 13);
-            this.label3.TabIndex = 14;
+            this.CheckPosDelLabel.AutoSize = true;
+            this.CheckPosDelLabel.Location = new System.Drawing.Point(267, 62);
+            this.CheckPosDelLabel.Name = "CheckPosDelLabel";
+            this.CheckPosDelLabel.Size = new System.Drawing.Size(13, 13);
+            this.CheckPosDelLabel.TabIndex = 14;
+            this.CheckPosDelLabel.Text = "  ";
             // 
-            // label4
+            // CheckRMSDelLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(267, 86);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 13);
-            this.label4.TabIndex = 15;
+            this.CheckRMSDelLabel.AutoSize = true;
+            this.CheckRMSDelLabel.Location = new System.Drawing.Point(267, 86);
+            this.CheckRMSDelLabel.Name = "CheckRMSDelLabel";
+            this.CheckRMSDelLabel.Size = new System.Drawing.Size(13, 13);
+            this.CheckRMSDelLabel.TabIndex = 15;
+            this.CheckRMSDelLabel.Text = "  ";
             // 
-            // label5
+            // CheckLoadingDelLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(267, 110);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 13);
-            this.label5.TabIndex = 16;
+            this.CheckLoadingDelLabel.AutoSize = true;
+            this.CheckLoadingDelLabel.Location = new System.Drawing.Point(267, 110);
+            this.CheckLoadingDelLabel.Name = "CheckLoadingDelLabel";
+            this.CheckLoadingDelLabel.Size = new System.Drawing.Size(13, 13);
+            this.CheckLoadingDelLabel.TabIndex = 16;
+            this.CheckLoadingDelLabel.Text = "  ";
+            // 
+            // CheckETLLogsDelLabel
+            // 
+            this.CheckETLLogsDelLabel.AutoSize = true;
+            this.CheckETLLogsDelLabel.Location = new System.Drawing.Point(291, 13);
+            this.CheckETLLogsDelLabel.Name = "CheckETLLogsDelLabel";
+            this.CheckETLLogsDelLabel.Size = new System.Drawing.Size(13, 13);
+            this.CheckETLLogsDelLabel.TabIndex = 17;
+            this.CheckETLLogsDelLabel.Text = "  ";
             // 
             // WorkspaceCleaner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 177);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.CheckETLLogsDelLabel);
+            this.Controls.Add(this.CheckLoadingDelLabel);
+            this.Controls.Add(this.CheckRMSDelLabel);
+            this.Controls.Add(this.CheckPosDelLabel);
+            this.Controls.Add(this.CheckIikoFrontDelLabel);
+            this.Controls.Add(this.CheckTempDelLabel);
             this.Controls.Add(this.checkBox_loading);
             this.Controls.Add(this.checkBox_date_rms);
             this.Controls.Add(this.button1);
@@ -176,10 +192,11 @@ namespace WorkspaceCleaner
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBox_date_rms;
         private System.Windows.Forms.CheckBox checkBox_loading;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label CheckTempDelLabel;
+        private System.Windows.Forms.Label CheckIikoFrontDelLabel;
+        private System.Windows.Forms.Label CheckPosDelLabel;
+        private System.Windows.Forms.Label CheckRMSDelLabel;
+        private System.Windows.Forms.Label CheckLoadingDelLabel;
+        private System.Windows.Forms.Label CheckETLLogsDelLabel;
     }
 }
