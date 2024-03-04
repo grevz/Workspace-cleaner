@@ -4,9 +4,6 @@ using System.IO;
 using System.Drawing;
 using System.ComponentModel;
 
-//TODO Удалить логи АТОЛ 
-//TODO Удалить логи Штрих
-
 namespace WorkspaceCleaner
 {
     public partial class WorkspaceCleaner : Form
@@ -91,7 +88,7 @@ namespace WorkspaceCleaner
         // Удаление логов POS
         private void LogsFilesDel()
         {
-            string DataPath = Path.Combine(_appDataUser, @"\iiko\CashServer\Logs");
+            string DataPath = Path.Combine(_appDataUser, @"iiko\CashServer\Logs");
             DeletedFromInfoFiles(DataPath, "iikoFrontLogs", CheckIikoFrontDelLabel, -30);
         }
 
