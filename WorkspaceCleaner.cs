@@ -4,6 +4,9 @@ using System.IO;
 using System.Drawing;
 using System.ComponentModel;
 
+//TODO Удалить логи АТОЛ 
+//TODO Удалить логи Штрих
+
 namespace WorkspaceCleaner
 {
     public partial class WorkspaceCleaner : Form
@@ -16,6 +19,9 @@ namespace WorkspaceCleaner
         private const string _iikoPosBase = @"iikoCard5POS\AppData\Roaming\iiko\iikoCard5\Logs";
         private static readonly string _iikoPosServiceProfileFolder = Path.Combine(@"C:\Windows\ServiceProfiles", _iikoPosBase);
         private static readonly string _iikoPosUsersFolder = Path.Combine(@"C:\Users\", _iikoPosBase);
+        private static readonly string _appDataUser = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        private static readonly string DataPathATOL = Path.Combine(_appDataUser, @"ATOL\drivers10\logs");
+        private static readonly string DataPathSHTRIH = Path.Combine(_appDataUser, @"SHTRIH-M\DrvFR\Logs");
         private readonly object BalanceLock = new object(); //Объект заглушка для ограничения записи в файл
 
         private void button1_Click(object sender, EventArgs e)
@@ -59,6 +65,12 @@ namespace WorkspaceCleaner
                 WorkerFirst.DoWork += (obj, ea) => LoadingFilesDel();
                 WorkerFirst.RunWorkerAsync();
             }
+            if (checkBoxKKT.Checked)
+            {
+                var WorkerFirst = new BackgroundWorker();
+                WorkerFirst.DoWork += (obj, ea) => KKTLogsDel();
+                WorkerFirst.RunWorkerAsync();
+            }
         }
 
         //Удаление файлов из TEMP
@@ -79,8 +91,7 @@ namespace WorkspaceCleaner
         // Удаление логов POS
         private void LogsFilesDel()
         {
-            string DataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            DataPath = $@"{DataPath}\iiko\CashServer\Logs";
+            string DataPath = Path.Combine(_appDataUser, @"\iiko\CashServer\Logs");
             DeletedFromInfoFiles(DataPath, "iikoFrontLogs", CheckIikoFrontDelLabel, -30);
         }
 
@@ -105,7 +116,7 @@ namespace WorkspaceCleaner
         //Удаление данных по RMS
         async void RMSFilesDel()
         {
-            string DataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"iiko\RMS");
+            string DataPath = Path.Combine(_appDataUser, @"iiko\RMS");
             DeletedFromInfoFiles(DataPath, "RMS", CheckRMSDelLabel, 1);
         }
 
@@ -114,6 +125,27 @@ namespace WorkspaceCleaner
         {
             string DataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
             DeletedFromInfoFiles(DataPath, "Loading", CheckLoadingDelLabel, 1);
+        }
+        private void KKTLogsDel()
+        {
+            PathForKKT(out var path);
+            DeletedFromInfoFiles(path, "LogsKKT", LabelLogsKKT, 1);          
+        }
+        private bool PathForKKT(out string folderPath)
+        {
+            folderPath = "";
+            if (Directory.Exists(DataPathATOL))
+            {
+                folderPath = DataPathATOL;
+                return true;
+            }
+            if (Directory.Exists(DataPathSHTRIH))
+            {
+                folderPath = DataPathSHTRIH;
+                return true;
+            }
+            MessageBox.Show("Нет POS Отсутствуют папки с логами ККТ на устройстве");
+            return false;
         }
 
         private void DeletedFromInfoFiles(string PathForDel, string NameMethods, Label LabelMethods, sbyte DayAgo)

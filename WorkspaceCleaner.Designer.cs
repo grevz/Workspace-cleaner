@@ -41,6 +41,8 @@ namespace WorkspaceCleaner
             this.CheckRMSDelLabel = new System.Windows.Forms.Label();
             this.CheckLoadingDelLabel = new System.Windows.Forms.Label();
             this.CheckETLLogsDelLabel = new System.Windows.Forms.Label();
+            this.checkBoxKKT = new System.Windows.Forms.CheckBox();
+            this.LabelLogsKKT = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // checkBox_temporary_files
@@ -75,7 +77,7 @@ namespace WorkspaceCleaner
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(101, 140);
+            this.button1.Location = new System.Drawing.Point(129, 156);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -157,11 +159,32 @@ namespace WorkspaceCleaner
             this.CheckETLLogsDelLabel.TabIndex = 17;
             this.CheckETLLogsDelLabel.Text = "  ";
             // 
+            // checkBoxKKT
+            // 
+            this.checkBoxKKT.AutoSize = true;
+            this.checkBoxKKT.Location = new System.Drawing.Point(13, 133);
+            this.checkBoxKKT.Name = "checkBoxKKT";
+            this.checkBoxKKT.Size = new System.Drawing.Size(119, 17);
+            this.checkBoxKKT.TabIndex = 18;
+            this.checkBoxKKT.Text = "Удалить логи ККТ";
+            this.checkBoxKKT.UseVisualStyleBackColor = true;
+            // 
+            // LabelLogsKKT
+            // 
+            this.LabelLogsKKT.AutoSize = true;
+            this.LabelLogsKKT.Location = new System.Drawing.Point(267, 134);
+            this.LabelLogsKKT.Name = "LabelLogsKKT";
+            this.LabelLogsKKT.Size = new System.Drawing.Size(13, 13);
+            this.LabelLogsKKT.TabIndex = 19;
+            this.LabelLogsKKT.Text = "  ";
+            // 
             // WorkspaceCleaner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 177);
+            this.ClientSize = new System.Drawing.Size(316, 199);
+            this.Controls.Add(this.LabelLogsKKT);
+            this.Controls.Add(this.checkBoxKKT);
             this.Controls.Add(this.CheckETLLogsDelLabel);
             this.Controls.Add(this.CheckLoadingDelLabel);
             this.Controls.Add(this.CheckRMSDelLabel);
@@ -198,5 +221,7 @@ namespace WorkspaceCleaner
         private System.Windows.Forms.Label CheckRMSDelLabel;
         private System.Windows.Forms.Label CheckLoadingDelLabel;
         private System.Windows.Forms.Label CheckETLLogsDelLabel;
+        private System.Windows.Forms.CheckBox checkBoxKKT;
+        private System.Windows.Forms.Label LabelLogsKKT;
     }
 }
